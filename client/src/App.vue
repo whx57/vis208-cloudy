@@ -18,6 +18,7 @@
       <!--湿度-->
     </div>
     <div class="wind_speed">
+      <PCooordinates/>
       <!--风力等级-->
     </div>
     <div class="timeline">
@@ -31,7 +32,7 @@
 
 <script>
 import DataProxy from "./datahelper/DataProxy"
-
+import PCooordinates from "./components/ParallelCoordinates";
 export default {
   name: 'App',
   components: {
@@ -43,6 +44,9 @@ export default {
         baseData:{}
       }
     }
+  },
+  components:{
+     PCooordinates
   },
   mounted: async function() {
       // ---Charts Data Preparation----
