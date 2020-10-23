@@ -2,8 +2,13 @@
   
 <template>
   <div class="Echarts">
+<<<<<<< HEAD
 	  <h3 style=" text-align: center;"> 城市月舒适度因素</h3>
     <div id="parallel" style="width: 720px;height:300px;">
+=======
+	  <span>城市月舒适度因素</span>
+    <div id="parallel" style="width: 500px;height:300px;">
+>>>>>>> 39ace79a05cfd19361dc371464dea7f095d2a128
 	</div>
   </div>
 </template>

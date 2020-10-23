@@ -35,6 +35,7 @@
         <div>         <ParallelCoordinates></ParallelCoordinates>  </div> 
     </div>
     <div class="wind_speed">
+      <PCooordinates/>
       <!--风力等级-->
       <div>         <percent></percent>  </div> 
     </div>
@@ -50,12 +51,16 @@
 
 <script>
 import DataProxy from "./datahelper/DataProxy"
+<<<<<<< HEAD
 import timeline from "./components/timeline";
 import ranking from "./components/ranking";
 import title from "./components/title";
 import percent from "./components/percent";
 import ParallelCoordinates from "./components/ParallelCoordinates";
 import inf_re from "./components/inf_re";
+=======
+import PCooordinates from "./components/ParallelCoordinates";
+>>>>>>> 39ace79a05cfd19361dc371464dea7f095d2a128
 export default {
   name: 'App',
   components: {
@@ -75,6 +80,9 @@ export default {
         baseData:{}
       }
     }
+  },
+  components:{
+     PCooordinates
   },
   mounted: async function() {
       // ---Charts Data Preparation----

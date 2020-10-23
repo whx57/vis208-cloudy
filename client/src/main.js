@@ -9,7 +9,8 @@ import echarts from 'echarts'
 Vue.prototype.$echarts = echarts
 Vue.config.productionTip = false;
 Vue.prototype.$http = axios;
-
+import echarts from 'echarts'
+Vue.prototype.$echarts = echarts
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
