@@ -1,5 +1,8 @@
 <template>
+
   <div id="app">
+
+     <div></div>
     <!--<img src="./assets/logo.png">-->
     <!--<router-view/>-->
     <div class="map_box" @click="touch()">
@@ -7,34 +10,63 @@
     </div>
     <div class="title">
       <!--标题-->
+      <div>         <title></title>  </div>
+      <div id="headers" >
+        <h4 >气象可视化</h4>
+      </div>
+
+
+
     </div>
     <div class="information_recommended">
       <!--消息推荐-->
+    <div> 
+      <inf_re></inf_re>
+    </div>
+
     </div>
     <div class="temp">
+      <h3 style=" text-align: center;">50城市前10排名</h3>
       <!--温度-->
+      <div>    <ranking></ranking>       </div>
     </div>
     <div class="humidity">
       <!--湿度-->
+        <div>         <ParallelCoordinates></ParallelCoordinates>  </div> 
     </div>
     <div class="wind_speed">
       <!--风力等级-->
+      <div>         <percent></percent>  </div> 
     </div>
     <div class="timeline">
       <!--时间轴-->
+      <div><timeline></timeline></div>
     </div>
-    <div class="select_box">
+    <!-- <div class="select_box"> -->
       <!--选择栏-->
-    </div>
+    <!-- </div> -->
   </div>
 </template>
 
 <script>
 import DataProxy from "./datahelper/DataProxy"
-
+import timeline from "./components/timeline";
+import ranking from "./components/ranking";
+import title from "./components/title";
+import percent from "./components/percent";
+import ParallelCoordinates from "./components/ParallelCoordinates";
+import inf_re from "./components/inf_re";
 export default {
   name: 'App',
   components: {
+    // test1,
+    title,
+    timeline,
+    ranking,
+    // tu3,
+    inf_re,
+    percent,
+    ParallelCoordinates
     
   },
   data () {
@@ -85,7 +117,7 @@ body {
   background-color: cornsilk;
   position: absolute;
   float: top;
-  opacity: 0.25;
+  opacity: 1;
 }
 
 .information_recommended{
@@ -97,37 +129,37 @@ body {
   position: absolute;
   float: left;
   z-index: 1;
-  opacity: 0.25;
+  opacity: 1;
 }
 .temp{
   width: 32.5%;
   height: 40%;
   position: absolute;
   background-color: cornsilk;
-  opacity: 0.25;
+  opacity: 1;
   z-index: 1;
   top: 59%;
   left: 0.5%;
 }
 .humidity{
-  width: 33%;
+  width: 39%;
   height: 40%;
   position: absolute;
   background-color: cornsilk;
-  opacity: 0.25;
+  opacity: 1;
   z-index: 1;
   top: 59%;
   left: 33.5%;
 }
 .wind_speed{
-  width: 32.5%;
+  width: 25%;
   height: 40%;
   position: absolute;
   background-color: cornsilk;
-  opacity: 0.25;
+  opacity: 1;
   z-index: 1;
   top: 59%;
-  left: 67%;
+  left: 73%;
 }
 .timeline{
   width: 60%;
@@ -149,5 +181,23 @@ body {
   background-color: cornsilk;
   opacity: 0.25;
   z-index: 1;
+}#headers {
+  position: absolute;
+  top: 0.1%;
+  left: 0.1%;
+  width: 99.7%;
+  height: 5%;
+  border: 1px solid white;
+  background-color: #30313a;
+  text-align: center;
+  color: #ccc;
+}
+#headers h4 {
+  position: absolute;
+  margin: 0;
+  padding: 0;
+  top: 30%;
+  left: 45%;
+  font-size: 30px;
 }
 </style>
