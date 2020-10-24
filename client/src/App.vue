@@ -7,6 +7,7 @@
     <!--<router-view/>-->
     <div class="map_box" @click="touch()">
       <!--地图-->
+      <Map/>
     </div>
     <div class="title">
       <!--标题-->
@@ -51,16 +52,14 @@
 
 <script>
 import DataProxy from "./datahelper/DataProxy"
-<<<<<<< HEAD
 import timeline from "./components/timeline";
 import ranking from "./components/ranking";
 import title from "./components/title";
 import percent from "./components/percent";
 import ParallelCoordinates from "./components/ParallelCoordinates";
 import inf_re from "./components/inf_re";
-=======
 import PCooordinates from "./components/ParallelCoordinates";
->>>>>>> 39ace79a05cfd19361dc371464dea7f095d2a128
+import Map from "./components/Map"
 export default {
   name: 'App',
   components: {
@@ -71,8 +70,9 @@ export default {
     // tu3,
     inf_re,
     percent,
-    ParallelCoordinates
-    
+    ParallelCoordinates,
+    PCooordinates,
+    Map
   },
   data () {
     return {
@@ -81,9 +81,7 @@ export default {
       }
     }
   },
-  components:{
-     PCooordinates
-  },
+  
   mounted: async function() {
       // ---Charts Data Preparation----
       await DataProxy.initChartsData(this.chartsData);
@@ -176,7 +174,7 @@ body {
   top: 51.5%;
   left: 25%;
   background-color: cornsilk;
-  opacity: 0.25;
+  /*opacity: 0.25;*/
   z-index: 1;
 }
 .select_box{
@@ -187,7 +185,7 @@ body {
   left: 87%;
   position: absolute;
   background-color: cornsilk;
-  opacity: 0.25;
+  /*opacity: 0.25;*/
   z-index: 1;
 }#headers {
   position: absolute;
