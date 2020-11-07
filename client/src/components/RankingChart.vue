@@ -1,6 +1,6 @@
 <template>
   <div class="basic">
-    <div id="title" style="font-size:25px">50城市指数排名情况</div>
+    <div id="title" style="font-size:23px">{{month}}月全国城市指数排名情况</div>
    <div id="tu1">
 
        <!-- wuxi -->
@@ -21,6 +21,7 @@ export default {
     props,
     data(){
         return {
+            month: 1,
             data_0:[],//城市
             data_1:[],//风效指数
             data_2:[],//温湿指数
@@ -122,6 +123,7 @@ export default {
         mounted() {
             pubsub.subscribe("getTimeData",(msg,data)=>{
                 //console.log(data);
+                this.month = data;
                 this.$root.$emit("updataRankingChart",data);
             })
             this.ChartInit()

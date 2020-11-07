@@ -1,6 +1,6 @@
 <template>
   <div class="Echarts">
-    <div id="title" style="font-size:20px">当月城市情况总览</div>
+    <div id="title" style="font-size:23px">{{month}}月城市情况总览</div>
     <div class="greenhouse">
         <div id="title1" style="font-size:20px">温湿指数</div>
         <div id="tu5"></div>
@@ -28,6 +28,7 @@ export default {
     props,
     data() {
         return {
+            month: 1,
         };
     },
     watch:{
@@ -149,6 +150,7 @@ export default {
     mounted() {
         pubsub.subscribe("getTimeData",(msg,data)=>{
             //console.log(data);
+            this.month = data;
             this.$root.$emit("updataPieChart",data);
         })
         this.ChartInit()

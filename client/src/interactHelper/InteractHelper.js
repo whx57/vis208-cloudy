@@ -1,4 +1,4 @@
-import DataProxy from '../dataHelper/DataProxy'
+import DataProxy from '../data_helper/DataProxy'
 
 export default class interactorRcvr{
     static updataInformation(chartsData,focus) {
@@ -17,9 +17,4 @@ export default class interactorRcvr{
         chartsData.rankingchartData.focus = focus;
         chartsData.rankingchartData.data = DataProxy.updateRankingChartFocus(chartsData.baseData,focus )
     }
-    static updataMapBoxView(chartsData,focus) {
-        chartsData.mapboxviewData.focus = focus;
-        chartsData.mapboxviewData.data = DataProxy.updateMapBoxViewFocus(chartsData.baseData,focus )
-    }
-
 }

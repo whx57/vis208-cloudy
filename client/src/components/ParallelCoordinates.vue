@@ -1,6 +1,6 @@
 <template>
   <div class="baise">
-	  <div style="font-size:25px  " id="name">城市月舒适度因素</div>
+	  <div style="font-size:23px" id="name">{{city}}市{{month}}月舒适度因素</div>
     <div id="parallel"></div>
   </div>
 </template>
@@ -13,7 +13,8 @@ const props={
 export default {
 	data(){
 		return{
-			city:"",
+			city:"北京",
+			month:1,
 			dataset:[],
 			date: 0,
 			humidity:0,
@@ -93,6 +94,7 @@ export default {
 			// 	data.push(this.city)
 			// }
 			// console.log(data)
+			this.month = data;
 			this.$root.$emit("updataParallelChart",data);
 		});
 		pubsub.subscribe('getCityData',(msg,data)=>{

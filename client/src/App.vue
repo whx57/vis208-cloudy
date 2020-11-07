@@ -32,8 +32,8 @@
 </template>
 
 <script>
-import DataProxy from "./datahelper/DataProxy"
-import InteractorRcvr from "./interactHelper/interactHelper"
+import DataProxy from "./data_helper/DataProxy"
+import InteractorRcvr from "./interactHelper/InteractHelper"
 import TimeLine from "./components/TimeLine";
 import RankingChart from "./components/RankingChart";
 import TitleChart from "./components/TitleChart";
@@ -80,10 +80,6 @@ export default {
           data:{},
           focus:""
         },
-        mapboxviewData:{
-          data:{}, 
-          focus:""
-        },
       }
     }
   },
@@ -125,9 +121,6 @@ export default {
       this.$root.$on("updataRankingChart",focus=>{
 
         InteractorRcvr.updataRankingChart(this.chartsData,focus);
-      }),
-      this.$root.$on("updataMapBoxView",focus=>{
-        InteractorRcvr.updataMapBoxView(this.chartsData,focus);
       })
   },
   methods: {

@@ -2,14 +2,17 @@
  <div class="inf_reco">
     <div id="information">
       <div id="name" >城市信息：</div>
-      <div id="city">当前选定城市：{{city}}市</div>
+      <div id="city">当前选定城市：{{city}}市&nbsp;&nbsp;</div>
       <div id="month">
-        <div style="float:left">推荐出游月份：</div> 
-        <div v-for="(value,key) in month" :key="key"
-        @click="touch(value,key)"
-        style="float:left;cursor:pointer"
-        :class="monthkey === key ? 'default default-active':'default'">&nbsp;{{value}}月&nbsp;</div> 
-      </div>
+        <div style="float:left">推荐出游月份：</div>
+        <div id="month_recommend">
+          <div v-for="(value,key) in month" :key="key"
+            @click="touch(value,key)"
+            style="float:left;cursor:pointer"
+            :class="monthkey === key ? 'default default-active':'default'">&nbsp;{{value}}月&nbsp;</div> 
+          </div>
+        </div>
+
     </div>
     <div id='month_detail'>
         <div id="comfort">舒适度指数：{{comfort_focus}}</div>
@@ -29,7 +32,7 @@ export default {
   props,
   data() {
     return {
-      city:'北京市',
+      city:'北京',
       month:[],
       comfort: [],
       greenhouse: [],
@@ -52,35 +55,51 @@ export default {
         }
       }
       this.monthkey = key
+    },
+    isnull(obj){
+      for(var key in obj) {
+          return false;
+      }
+      return true;
     }
   },
   watch:{
     data:{
       handler(){
         //console.log(this.data)
-        this.city = this.data[0]['city'];
-        for(var i=0;i<this.data.length;i++){
-          this.month[i] = Number(this.data[i].date);
-          this.comfort[i] = this.data[i].comfort;
-          this.greenhouse[i] = this.data[i].greenhouse;
-          this.windeff[i] = this.data[i].windeff;
-        }
-        this.comfort_focus=this.comfort[0];
-        this.greenhouse_focus=this.greenhouse[0];
-        this.windeff_focus=this.windeff[0];
-        for(var i=0;i<this.month.length;i++){
-          for(var j=0;j<this.month.length;j++){
-            if(this.month[i]<this.month[j]){
-              var temp=this.month[i];this.month[i]=this.month[j];this.month[j]=temp;
-            }
+        this.month = []
+        if(this.isnull(this.data)){
+          // this.comfort=[];
+          // this.greenhouse=[];
+          // this.windeff=[];
+          this.month = ['没有推荐']
+          this.comfort_focus=null;
+          this.greenhouse_focus=null;
+          this.windeff_focus=null;
+        }else{
+          for(var i=0;i<this.data.length;i++){
+            this.month[i] = Number(this.data[i].date);
+            this.comfort[i] = this.data[i].comfort;
+            this.greenhouse[i] = this.data[i].greenhouse;
+            this.windeff[i] = this.data[i].windeff;
           }
-        };
-        
+          this.comfort_focus=this.comfort[0];
+          this.greenhouse_focus=this.greenhouse[0];
+          this.windeff_focus=this.windeff[0];
+          for(var i=0;i<this.month.length;i++){
+            for(var j=0;j<this.month.length;j++){
+              if(this.month[i]<this.month[j]){
+                var temp=this.month[i];this.month[i]=this.month[j];this.month[j]=temp;
+              }
+            }
+          };
+        }
       }
     }
   },
   mounted() {
     pubsub.subscribe('getCityData',(msg,data)=>{
+      this.city = data;
       this.$root.$emit("updataInformation",data);
     });
   },
@@ -113,7 +132,7 @@ export default {
   top: 30%;
   left: 5%;
   width: 90%;
-  height: 10%;
+  height: auto;
   border: 2px solid #00000002;
   border-radius: 10px;
   font-size: 25px;
@@ -135,7 +154,7 @@ export default {
   width: 90%;
   height: 40%;
   position: absolute;
-  top: 45%;
+  top: 55%;
   left: 5%;
   box-shadow: 10px 10px 10px #00000020;
   border-radius: 25px;

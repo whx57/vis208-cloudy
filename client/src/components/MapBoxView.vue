@@ -3,7 +3,7 @@
 </template>
 
 <script>
-import DataProvider from '../DataProvider';
+import dataProvider from '../dataProvider';
 import * as mapboxgl from "mapbox-gl";
 
 import pubsub from 'pubsub-js'
@@ -109,7 +109,7 @@ export default {
                 source: "change",
                 paint:{
                     "circle-color":"#00BFFF",
-                    "circle-radius": 7,
+                    "circle-radius": 10,
                 },
                 filter:["==","name",""]
             });
@@ -132,7 +132,7 @@ export default {
         },
         mapLoadGeojson(that) {
             this.map.on("load", function() {
-                DataProvider.getRegionJson().then(
+                dataProvider.getRegionJson().then(
                     response => {
                         that.data = response.data;
                         that.addRegion2Map(that.data);
@@ -141,7 +141,7 @@ export default {
                         that.loading = false;
                     }
                 );
-                DataProvider.getCityPointJson().then(
+                dataProvider.getCityPointJson().then(
                     response =>{
                         that.data = response.data;
                         that.mapDrawPoint(that.data);
@@ -160,6 +160,12 @@ export default {
                 // console.log(cityName);
                 pubsub.publish("getCityData",cityName.substr(0,cityName.length-1));
             })
+            that.map.on('mouseenter', 'points', function () {
+                that.map.getCanvas().style.cursor = 'pointer';
+            });
+            that.map.on('mouseleave', 'points', function () {
+                that.map.getCanvas().style.cursor = '';
+            });
         }
     }
 }
