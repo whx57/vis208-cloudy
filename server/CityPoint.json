@@ -1,0 +1,505 @@
+{
+    "type": "FeatureCollection",
+    "features": [
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [116.405285, 39.904989]
+            },
+            "properties": {
+                "name": "北京市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [117.190182, 39.125596]
+            },
+            "properties": {
+                "name": "天津市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [114.521529,38.048312]
+            },
+            "properties": {
+                "name": "石家庄市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [119.525971,39.894727]
+            },
+            "properties": {
+                "name": "秦皇岛市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [112.556396,37.87699]
+            },
+            "properties": {
+                "name": "太原市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [113.37336,40.102783]
+            },
+            "properties": {
+                "name": "大同市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [111.755512,40.848422]
+            },
+            "properties": {
+                "name": "呼和浩特市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [123.471095,41.68383]
+            },
+            "properties": {
+                "name": "沈阳市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.621628,38.918953]
+            },
+            "properties": {
+                "name": "大连市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [125.330606,43.821954]
+            },
+            "properties": {
+                "name": "长春市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [126.555634,43.843566]
+            },
+            "properties": {
+                "name": "吉林市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [126.541611,45.808824]
+            },
+            "properties": {
+                "name": "哈尔滨市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.472644, 31.231706]
+            },
+            "properties": {
+                "name": "上海市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [118.802422,32.064652]
+            },
+            "properties": {
+                "name": "南京市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [117.290574,34.212666]
+            },
+            "properties": {
+                "name": "徐州市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [120.592412,31.303565]
+            },
+            "properties": {
+                "name": "苏州市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [120.21551,30.253082]
+            },
+            "properties": {
+                "name": "杭州市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [121.630844,29.866069]
+            },
+            "properties": {
+                "name": "宁波市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [117.233441,31.826578]
+            },
+            "properties": {
+                "name": "合肥市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [119.30347,26.080429]
+            },
+            "properties": {
+                "name": "福州市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [118.096435,24.485408]
+            },
+            "properties": {
+                "name": "厦门市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [118.682444,24.879952]
+            },
+            "properties": {
+                "name": "泉州市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [115.864585,28.689455]
+            },
+            "properties": {
+                "name": "南昌市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [117.126399,36.656554]
+            },
+            "properties": {
+                "name": "济南市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [120.389458,36.072227]
+            },
+            "properties": {
+                "name": "青岛市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [114.314595,34.802885]
+            },
+            "properties": {
+                "name": "开封市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [112.459424,34.624264]
+            },
+            "properties": {
+                "name": "洛阳市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [114.311586,30.598467]
+            },
+            "properties": {
+                "name": "武汉市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [114.878489,30.459359]
+            },
+            "properties": {
+                "name": "黄冈市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [112.94547,28.23489]
+            },
+            "properties": {
+                "name": "长沙市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [113.271429,23.135336]
+            },
+            "properties": {
+                "name": "广州市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [114.064552,22.548456]
+            },
+            "properties": {
+                "name": "深圳市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [113.39942,22.522314]
+            },
+            "properties": {
+                "name": "中山市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [108.373454,22.822607]
+            },
+            "properties": {
+                "name": "南宁市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [110.186199,25.2417]
+            },
+            "properties": {
+                "name": "桂林市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [110.206716,20.052113]
+            },
+            "properties": {
+                "name": "海口市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [109.51856,18.258736]
+            },
+            "properties": {
+                "name": "三亚市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [106.558437,29.568996]
+            },
+            "properties": {
+                "name": "重庆市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [104.072745,30.578994]
+            },
+            "properties": {
+                "name": "成都市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [104.68556,31.473663]
+            },
+            "properties": {
+                "name": "绵阳市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [106.63658,26.653324]
+            },
+            "properties": {
+                "name": "贵阳市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [102.839443,24.886272]
+            },
+            "properties": {
+                "name": "昆明市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [100.232462,26.860657]
+            },
+            "properties": {
+                "name": "丽江市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [100.274583,25.612129]
+            },
+            "properties": {
+                "name": "大理白族自治州"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [91.178458,29.659487]
+            },
+            "properties": {
+                "name": "拉萨市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [108.946465,34.347269]
+            },
+            "properties": {
+                "name": "西安市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [103.840524,36.067235]
+            },
+            "properties": {
+                "name": "兰州市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [101.784446,36.623385]
+            },
+            "properties": {
+                "name": "西宁市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [106.238496,38.492462]
+            },
+            "properties": {
+                "name": "银川市"
+            }
+        },
+        {
+            "type": "Feature",
+            "geometry": {
+                "type": "Point",
+                "coordinates": [87.624438,43.830763]
+            },
+            "properties": {
+                "name": "乌鲁木齐市"
+            }
+        }
+    ]
+}

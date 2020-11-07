@@ -1,83 +1,89 @@
 <template>
 
   <div id="app">
-
-     <div></div>
-    <!--<img src="./assets/logo.png">-->
-    <!--<router-view/>-->
-    <div class="map_box" @click="touch()">
-      <!--地图-->
-      <Map/>
-    </div>
-    <div class="title">
-      <!--标题-->
-      <div>         <title></title>  </div>
-      <div id="headers" >
-        <h4 >气象可视化</h4>
-      </div>
-
-
-
+      <map-box-view class="mapbox-view"></map-box-view>
+    <div class="title" @click="touch()">
+      <title-chart></title-chart>
     </div>
     <div class="information_recommended">
-      <!--消息推荐-->
-    <div> 
-      <inf_re></inf_re>
-    </div>
-
+      <information-recommended
+        v-bind:data="chartsData.informationData.data"
+        v-bind:focus="chartsData.informationData.focus"></information-recommended>
     </div>
     <div class="temp">
-      <h3 style=" text-align: center;">50城市前10排名</h3>
-      <!--温度-->
-      <div>    <ranking></ranking>       </div>
+      <ranking-chart
+      v-bind:data="chartsData.rankingchartData.data"
+      v-bind:focus="chartsData.rankingchartData.focus"></ranking-chart>
     </div>
     <div class="humidity">
-      <!--湿度-->
-        <div>         <ParallelCoordinates></ParallelCoordinates>  </div> 
+      <parallel-coordinates
+      v-bind:data="chartsData.parallelchartData.data"
+      v-bind:focus="chartsData.parallelchartData.focus"></parallel-coordinates>
     </div>
     <div class="wind_speed">
-      <PCooordinates/>
-      <!--风力等级-->
-      <div>         <percent></percent>  </div> 
+      <pie-chart
+      v-bind:data="chartsData.piechartData.data"
+      v-bind:focus="chartsData.piechartData.focus"></pie-chart>
     </div>
     <div class="timeline">
-      <!--时间轴-->
-      <div><timeline></timeline></div>
+      <time-line></time-line>
     </div>
-    <!-- <div class="select_box"> -->
-      <!--选择栏-->
-    <!-- </div> -->
   </div>
 </template>
 
 <script>
 import DataProxy from "./datahelper/DataProxy"
-import timeline from "./components/timeline";
-import ranking from "./components/ranking";
-import title from "./components/title";
-import percent from "./components/percent";
+import InteractorRcvr from "./interactHelper/interactHelper"
+import TimeLine from "./components/TimeLine";
+import RankingChart from "./components/RankingChart";
+import TitleChart from "./components/TitleChart";
+import PieChart from "./components/PieChart";
 import ParallelCoordinates from "./components/ParallelCoordinates";
-import inf_re from "./components/inf_re";
+import InformationRecommended from "./components/InformationRecommended";
 import PCooordinates from "./components/ParallelCoordinates";
-import Map from "./components/Map"
+import MapBoxView from "./components/MapBoxView"
+
+import pubsub from "pubsub-js"
 export default {
   name: 'App',
   components: {
     // test1,
-    title,
-    timeline,
-    ranking,
+    TitleChart,
+    TimeLine,
+    RankingChart,
     // tu3,
-    inf_re,
-    percent,
+    InformationRecommended,
+    PieChart,
     ParallelCoordinates,
     PCooordinates,
-    Map
+    MapBoxView,
   },
   data () {
     return {
+      month: 1,
+      city: '北京市',
       chartsData: {
-        baseData:{}
+        baseData:{},
+        baseDataD:{},
+        informationData:{
+          focus: "北京市",
+          data:{},
+        },
+        piechartData:{
+          data:{},
+          focus:""
+        },
+        parallelchartData:{
+          data:{},
+        },
+        rankingchartData:{
+          data:{},
+          focus:""
+        },
+        mapboxviewData:{
+          data:{}, 
+          focus:""
+        },
       }
     }
   },
@@ -85,10 +91,48 @@ export default {
   mounted: async function() {
       // ---Charts Data Preparation----
       await DataProxy.initChartsData(this.chartsData);
+
+      pubsub.subscribe("getCityData",(msg,data)=>{
+        this.city=data;
+        // console.log(this.city)
+      })
+
+      this.$root.$on("updataInformation",focus=>{
+        InteractorRcvr.updataInformation(this.chartsData,focus);
+      }),
+      this.$root.$on("updataPieChart",focus=>{
+        InteractorRcvr.updataPieChart(this.chartsData,focus);
+      }),
+      
+      this.$root.$on("updataParallelChart",focus=>{
+        var data=[1,"北京"];
+        if(this.chartsData.parallelchartData.focus ==null){
+          if(typeof focus==='number'&& !isNaN(focus)){
+            data[0]=focus
+          }else{
+            data[1]=focus
+          }
+        }else{
+          if(typeof focus==='number'&& !isNaN(focus)){
+            data=[focus,this.chartsData.parallelchartData.focus[1]]
+          }else{
+            data=[this.chartsData.parallelchartData.focus[0],focus]
+          }
+        }
+        InteractorRcvr.updataParallelChart(this.chartsData,data);
+      }),
+
+      this.$root.$on("updataRankingChart",focus=>{
+
+        InteractorRcvr.updataRankingChart(this.chartsData,focus);
+      }),
+      this.$root.$on("updataMapBoxView",focus=>{
+        InteractorRcvr.updataMapBoxView(this.chartsData,focus);
+      })
   },
   methods: {
     touch(){
-      console.log(this.chartsData);
+      console.log(this.chartsData.informationData.data);
     }
   }
 }
@@ -107,23 +151,21 @@ body {
   overflow-y: scroll;
 }
 
-.map_box{
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  z-index: 0;
-  background-color: #2C3E50;
-}
+.mapbox-view {
+    /*position: absolute;*/
+    top: 0;
+    z-index:0;
+  }
 
 .title{
   width: 80%;
   height: 5%;
   top:1.5%;
   left: 10%;
-  background-color: cornsilk;
+  background-color:rgb(255, 255, 255,0.35);
   position: absolute;
   float: top;
-  opacity: 1;
+  opacity: 0.5;
 }
 
 .information_recommended{
@@ -131,18 +173,16 @@ body {
   height: 50%;
   left: 0.5%;
   top: 7.5%;
-  background-color: cornsilk;
+  background-color: rgb(255, 255, 255,0.35);
   position: absolute;
   float: left;
   z-index: 1;
-  opacity: 1;
 }
 .temp{
-  width: 32.5%;
+  width: 39.5%;
   height: 40%;
   position: absolute;
-  background-color: cornsilk;
-  opacity: 1;
+  background-color: rgb(255, 255, 255,0.35);
   z-index: 1;
   top: 59%;
   left: 0.5%;
@@ -151,31 +191,29 @@ body {
   width: 39%;
   height: 40%;
   position: absolute;
-  background-color: cornsilk;
-  opacity: 1;
+  background-color: rgb(255, 255, 255,0.35);
   z-index: 1;
   top: 59%;
-  left: 33.5%;
+  left: 40.5%;
 }
 .wind_speed{
-  width: 25%;
-  height: 40%;
+  width: 20%;
+  height: 91%;
   position: absolute;
-  background-color: cornsilk;
-  opacity: 1;
+  background-color: rgb(255, 255, 255,0.35);
   z-index: 1;
-  top: 59%;
-  left: 73%;
+  top: 7.5%;
+  left: 80%;
 }
 .timeline{
-  width: 60%;
-  height: 6%;
+  width: 58%;
+  height: 7%;
   position: absolute;
   top: 51.5%;
-  left: 25%;
-  background-color: cornsilk;
-  /*opacity: 0.25;*/
+  left: 21%;
+  background-color: rgb(255, 255, 255,0.35);
   z-index: 1;
+  opacity: 0.75;
 }
 .select_box{
   width: 12%;
@@ -184,26 +222,8 @@ body {
   top: 10%;
   left: 87%;
   position: absolute;
-  background-color: cornsilk;
+  background-color: rgb(253, 253, 253);
   /*opacity: 0.25;*/
   z-index: 1;
-}#headers {
-  position: absolute;
-  top: 0.1%;
-  left: 0.1%;
-  width: 99.7%;
-  height: 5%;
-  border: 1px solid white;
-  background-color: #30313a;
-  text-align: center;
-  color: #ccc;
-}
-#headers h4 {
-  position: absolute;
-  margin: 0;
-  padding: 0;
-  top: 30%;
-  left: 45%;
-  font-size: 30px;
 }
 </style>
