@@ -55,7 +55,7 @@ export default {
                         // color:['#f6da22','#bbe2e8','#6cacde'],
                         //冷-》热
                         // color:['#AFEEEE','#bbe2e8','#6cacde','#79CDCD','#B4EEB4','#dec768','#d9c092','#d9a092','#FF8C69'],
-                        color:['#8797a6','#b0b1b3','#97a38b','#b7c6b3','#e1e6e0','#fae9d5','#a7a7a9','#a2807e','#945657'],
+                        color:['#204098','#3860a0','#6088c8','#90b0c0','#90a0a0','#d0b878','#c1896e','#a2807e','#945657'],
                         name:'  温湿指数',
                         type:'pie',
                         selectedMode: 'single',
@@ -65,8 +65,9 @@ export default {
                             normal: {
                                 show: true,
                                 fontSize: 15,
-                                color:'',
-                                fontFamily:'Microsoft Yahei'
+                               color:'#406098',
+                                fontFamily:'Microsoft Yahei',
+                                avoidLabelOverlap: true,
                             }
                         },
                         data: this.data.data1
@@ -95,7 +96,7 @@ export default {
                         // color:['#FF4040','#CAFF70','#FFF68F','#FF6347','#CD5555'],
                         //   color:['#00BFFF','#bbe2e8','#6cacde','#76EEC6','#CAFF70','#f6da22','#FF7256','#EE4000','red'],
                         //   color:['black','#bbe2e8','#6cacde','#79CDCD','#B4EEB4','#dec768','#d9c092','red'],
-                        color:['#8797a6','#b0b1b3','#97a38b','#b7c6b3','#e1e6e0','#fae9d5','#a7a7a9','#a2807e','#945657'],
+                      color:['#204098','#3860a0','#6088c8','#90b0c0','#90a0a0','#d0b878','#c1896e','#a2807e','#945657'],
                         label: {
                             normal: {
                                 show: true,
@@ -103,7 +104,8 @@ export default {
                                 align:'right',
                                 fontSize: 15,
                                 fontFamily:'Microsoft YaHei',
-                                color:"	#00C5CD"
+                                color:'#406098',
+                                avoidLabelOverlap: true,
                             },
                                         },
                         data: this.data.data2
@@ -128,7 +130,7 @@ export default {
                         //舒服 -》不舒服
                         // color:['#76EEC6','#CAFF70','#f6da22','#FF7256','#EE4000'],
                         //   color:['black','#bbe2e8','#6cacde','#79CDCD','#B4EEB4','red'],
-                        color:['#8797a6','#b0b1b3','#97a38b','#b7c6b3','#e1e6e0','#fae9d5','#a7a7a9','#a2807e','#945657'],
+                    color:['#90a0a0','#d0b878','#90b0c0','#6088c8','#3860a0','#204098'],
                   
                         label: {
                             normal: {
@@ -136,7 +138,8 @@ export default {
                                 // position: 'inside',
                                 fontSize: 15,
                                 fontFamily:'Microsoft YaHei',
-                                // color:'#80F0E3'
+                                color:'#406098',
+                                avoidLabelOverlap: true,
                             }
                         },
                         data:this.data.data3

@@ -183,7 +183,7 @@ export default {
 
 .default-active{
   color: #fff;
-  background: rgb(51, 151, 233,0.5);
+background:#78a0c8;
   border-radius: 15px;
 }
 </style>
