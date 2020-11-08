@@ -18,6 +18,7 @@ function PieChartDataCalc(baseData){
         data3:[{name:"非常舒适",value: 0},{name:"舒适",value: 0},{name:"较舒适",value: 0},
                 {name:"较不舒适",value: 0},{name:"不舒适",value: 0},{name:"极不舒适",value: 0}]
     }
+    var finaldata = {data1:[],data2:[],data3:[]};
     for(var i=0;i<baseData.length;i++){
         //判断月份，初始化为1月
         if(baseData[i]['时间'] ==1 ){
@@ -83,8 +84,30 @@ function PieChartDataCalc(baseData){
             data.data3[5].value +=1
         }
     }
-    //console.log(data)
-    return data
+    // console.log(data.data1.length)
+    var k=0;
+    for(var i=0;i<data.data1.length;i++){
+        if(data.data1[i].value!=0){
+            finaldata.data1[k]=data.data1[i]
+            k++;
+        }
+    }
+    k=0;
+    for(var i=0;i<data.data2.length;i++){
+        if(data.data2[i].value!=0){
+            finaldata.data2[k]=data.data2[i]
+            k++;
+        }
+    }
+    k=0;
+    for(var i=0;i<data.data3.length;i++){
+        if(data.data3[i].value!=0){
+            finaldata.data3[k]=data.data3[i]
+            k++;
+        }
+    }
+    // console.log(finaldata)
+    return finaldata
 }
 
 function updatePieChart(baseData,focus){
@@ -100,6 +123,7 @@ function updatePieChart(baseData,focus){
         data3:[{name:"非常舒适",value: 0},{name:"舒适",value: 0},{name:"较舒适",value: 0},
                 {name:"较不舒适",value: 0},{name:"不舒适",value: 0},{name:"极不舒适",value: 0}]
     }
+    var finaldata = {data1:[],data2:[],data3:[]};
     for(var i=0;i<baseData.length;i++){
         //判断月份，初始化为1月
         if(baseData[i]['时间'] == time ){
@@ -164,6 +188,27 @@ function updatePieChart(baseData,focus){
             data.data3[5].value +=1
         }
     }
+    var k=0;
+    for(var i=0;i<data.data1.length;i++){
+        if(data.data1[i].value!=0){
+            finaldata.data1[k]=data.data1[i]
+            k++;
+        }
+    }
+    k=0;
+    for(var i=0;i<data.data2.length;i++){
+        if(data.data2[i].value!=0){
+            finaldata.data2[k]=data.data2[i]
+            k++;
+        }
+    }
+    k=0;
+    for(var i=0;i<data.data3.length;i++){
+        if(data.data3[i].value!=0){
+            finaldata.data3[k]=data.data3[i]
+            k++;
+        }
+    }
     //console.log(data)
-    return data
+    return finaldata
 }
