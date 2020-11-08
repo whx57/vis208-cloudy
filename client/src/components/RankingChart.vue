@@ -64,7 +64,8 @@ export default {
                     left: '3%',
                     right: '4%',
                     bottom: '3%',
-                    containLabel: true
+                    containLabel: true,
+                    
                 },
                 xAxis: [
                     {
@@ -88,7 +89,7 @@ export default {
                             show: true,
                             position: 'inside'
                         },
-                        color: '#3fb1e3',
+                         color:'#80a088',
                         data: this.data_1
                     },
                     {
@@ -98,7 +99,7 @@ export default {
                         label: {
                             show: true
                         },
-                        color:'#22c3aa',
+                        color:'#3c8769',
                         data: this.data_2
                     },
                     {
@@ -109,7 +110,7 @@ export default {
                             show: false,
                             position: 'left'
                         },
-                        color:'#c4ebad',
+                       color:'#cdb19b',
                         data: this.data_3
                     }
                 ]
@@ -139,8 +140,8 @@ export default {
 }
 #tu1{
     position: absolute;
-    height: 95%;
+    height: 93%;
     width: 100%;
-    top: 5%;
+    top: 7%;
 }
 </style>
