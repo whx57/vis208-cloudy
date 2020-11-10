@@ -56,27 +56,12 @@ export default {
       }
       this.monthkey = key
     },
-    isnull(obj){
-      for(var key in obj) {
-          return false;
-      }
-      return true;
-    }
   },
   watch:{
     data:{
       handler(){
         //console.log(this.data)
         this.month = []
-        if(this.isnull(this.data)){
-          // this.comfort=[];
-          // this.greenhouse=[];
-          // this.windeff=[];
-          this.month = ['没有推荐']
-          this.comfort_focus=null;
-          this.greenhouse_focus=null;
-          this.windeff_focus=null;
-        }else{
           for(var i=0;i<this.data.length;i++){
             this.month[i] = Number(this.data[i].date);
             this.comfort[i] = this.data[i].comfort;
@@ -93,13 +78,16 @@ export default {
               }
             }
           };
-        }
       }
     }
   },
   mounted() {
     pubsub.subscribe('getCityData',(msg,data)=>{
-      this.city = data;
+      if(data == '大理白族自治'){
+          this.city = "大理";
+      }else{
+          this.city = data;
+      }
       this.$root.$emit("updataInformation",data);
     });
   },

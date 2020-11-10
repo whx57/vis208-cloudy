@@ -78,6 +78,19 @@ function updateInformation(baseData,focus){
             })
         }
     }
+    if(isnull(data)){
+        for(var i=0;i<dataset.length;i++){
+            if(dataset[i]['comfort']<=6.95 &&(dataset[i]['greenhouse']>=55 && dataset[i]['greenhouse']<=75)){
+                data.push({
+                    city:dataset[i]['city'],
+                    date:dataset[i]['date'],
+                    comfort:dataset[i]['comfort'],
+                    greenhouse:dataset[i]['greenhouse'],
+                    windeff:dataset[i]['windeff']
+                })
+            }
+        }
+    }
     for(var i=0;i<data.length;i++){
         for(var j=0;j<data.length;j++){
             if(data[i]['comfort']>data[j]['comfort']){
@@ -88,3 +101,10 @@ function updateInformation(baseData,focus){
     }
     return data
 }
+
+function isnull(obj){
+    for(var key in obj) {
+        return false;
+    }
+    return true;
+  }
