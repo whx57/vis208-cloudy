@@ -10,20 +10,23 @@
         v-bind:data="chartsData.informationData.data"
         v-bind:focus="chartsData.informationData.focus"></information-recommended>
     </div>
-    <div class="temp">
-      <ranking-chart
-      v-bind:data="chartsData.rankingchartData.data"
-      v-bind:focus="chartsData.rankingchartData.focus"></ranking-chart>
+    <div class="wordcloudy">
+      
     </div>
-    <div class="humidity">
+    <div class="ranking">
+      <!-- <ranking-chart
+      v-bind:data="chartsData.rankingchartData.data"
+      v-bind:focus="chartsData.rankingchartData.focus"></ranking-chart> -->
+    </div>
+    <div class="parallel">
       <parallel-coordinates
       v-bind:data="chartsData.parallelchartData.data"
       v-bind:focus="chartsData.parallelchartData.focus"></parallel-coordinates>
     </div>
-    <div class="wind_speed">
-      <pie-chart
+    <div class="pie">
+      <!-- <pie-chart
       v-bind:data="chartsData.piechartData.data"
-      v-bind:focus="chartsData.piechartData.focus"></pie-chart>
+      v-bind:focus="chartsData.piechartData.focus"></pie-chart> -->
     </div>
     <div class="timeline">
       <time-line></time-line>
@@ -153,7 +156,7 @@ body {
 .title{
   width: 80%;
   height: 5%;
-  top:1.5%;
+  top:1%;
   left: 10%;
   background-color:rgb(255, 255, 255,0.35);
   position: absolute;
@@ -163,7 +166,7 @@ body {
 
 .information_recommended{
   width: 20%;
-  height: 50%;
+  height: 51%;
   left: 0.5%;
   top: 7.5%;
   background-color: rgb(255, 255, 255,0.35);
@@ -171,8 +174,8 @@ body {
   float: left;
   z-index: 1;
 }
-.temp{
-  width: 39.5%;
+.wordcloudy{
+  width: 30%;
   height: 40%;
   position: absolute;
   background-color: rgb(255, 255, 255,0.35);
@@ -180,30 +183,30 @@ body {
   top: 59%;
   left: 0.5%;
 }
-.humidity{
+.parallel{
   width: 39%;
   height: 40%;
   position: absolute;
   background-color: rgb(255, 255, 255,0.35);
   z-index: 1;
   top: 59%;
-  left: 40.5%;
+  left: 31%;
 }
-.wind_speed{
-  width: 20%;
-  height: 91%;
+.pie{
+  width: 29.5%;
+  height: 40%;
   position: absolute;
   background-color: rgb(255, 255, 255,0.35);
   z-index: 1;
-  top: 7.5%;
-  left: 80%;
+  top: 59%;
+  left: 70.5%;
 }
 .timeline{
-  width: 58%;
+  width: 55%;
   height: 7%;
   position: absolute;
   top: 51.5%;
-  left: 21%;
+  left: 22.5%;
   background-color: rgb(255, 255, 255,0.35);
   z-index: 1;
   opacity: 0.75;
@@ -218,5 +221,14 @@ body {
   background-color: rgb(253, 253, 253);
   /*opacity: 0.25;*/
   z-index: 1;
+}
+.ranking{
+  width: 21%;
+  height: 51%;
+  position: absolute;
+  background-color: rgb(255, 255, 255,0.35);
+  z-index: 1;
+  top: 7.5%;
+  left: 79%;
 }
 </style>
