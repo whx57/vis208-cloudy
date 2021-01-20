@@ -1,21 +1,9 @@
 <template>
   <div class="Echarts">
     <div id="title" style="font-size:23px">{{month}}月城市情况总览</div>
-    <div class="greenhouse">
-        <div id="title1" style="font-size:20px">温湿指数</div>
-        <div id="tu5"></div>
-    </div>
-    <div class="wind">
-        <div id="title2" style="font-size:20px">风效指数</div>
-        <div id="tu6"></div>
-    </div>    
-    <div class="comfort">
-        <div id="title3" style="font-size:20px">舒适度</div>
-        <div id="tu7"></div>
-    </div>
+    <div id="tu5"></div>
   </div>
 </template>
-
 <script>
 // import echarts from "echarts";
 import pubsub from "pubsub-js"
@@ -24,184 +12,138 @@ const props={
     data:{},
 }
 export default {
-    name: "PieChart",
+    name:"PieChart",
     props,
     data() {
-        return {
-            month: 1,
+        return{
+            month:1,
         };
     },
     watch:{
         data:{
             handler(){
-                //console.log(this.data)
                 this.ChartInit();
-                this.ChartInit1();
-                this.ChartInit2();
-            }  
+            } ,
+             deep:true
         }
     },
-    methods: {
-          ChartInit() {
-      var myChart = this.$echarts.init(document.getElementById("tu5"));  
-                var option = {
-                tooltip: {
-                    trigger: 'item',
-                    formatter: "{a} <br/>{b}: {c} ({d}%)"
-                },
-
-                series: [
-                    {
-                        // color:['#f6da22','#bbe2e8','#6cacde'],
-                        //冷-》热
-                        // color:['#AFEEEE','#bbe2e8','#6cacde','#79CDCD','#B4EEB4','#dec768','#d9c092','#d9a092','#FF8C69'],
-                        color:['#204098','#3860a0','#6088c8','#90b0c0','#90a0a0','#d0b878','#c1896e','#a2807e','#945657'],
-                        name:'  温湿指数',
-                        type:'pie',
-                        selectedMode: 'single',
-                        radius: ['20%', '70%'],
-
-                        label: {
+    methods:{
+        ChartInit(){
+             var myChart = this.$echarts.init(document.getElementById("tu5")); 
+             console.log(this.data)
+             let resData=[{
+                 name:'温湿指数',
+                 value:this.data.data1[1].value+this.data.data1[2].value+this.data.data1[3].value     
+                // value:10          
+             },{
+                 name:'风效指数',
+                 value:this.data.data2[3].value,
+                 //value:12
+             },{
+                 name:'舒适度',
+                 value:this.data.data3[0].value
+                 //value:16
+             }
+             ]
+             let color = [ // 渐变颜色
+                        ['#2592FF', '#20a6ff'],
+                        ['#F7C23A', '#ffc83c'],
+                        ['#7686A3', '#8395b4'],
+                        ]
+             let series=[]
+             for(let i=0;i<resData.length;i++){
+                 series.push({
+                     type:'pie',
+                     clockWise:true,
+                     hoverAnimation:false,
+                     radius:[78-22*i+'%',68-22*i+'%'],
+                     center:['50%','50%'],
+                     itemStyle:{
+                         normal:{
+                             label:{
+                                 show:false
+                             },
+                             labelLine:{
+                                 show:false
+                             },
+                             borderWidth:18
+                         }
+                     },
+                     data:[{
+                         name:resData[i].name,
+                         value:resData[i].value,
+                     },
+                     {
+                         name:'',
+                         value:50-resData[i].value,
+                     }
+                     ]
+                 })
+                series.push({
+                    name: '',
+                    type: 'pie',
+                    clockWise: true, //顺时加载
+                    z: 3, // 层级，默认为 2，z小的会被z大的覆盖住
+                    hoverAnimation: true, // 鼠标移入变大
+                    radius: [78 - i * 22 + '%', 68 - i * 22 + '%'], // 圆环
+                    center: ['50%', '50%'], // 位置
+                    label: {
+                        show: false
+                    },
+                    data: [{ // 阴影的75%
+                        value: 7.5,
+                        itemStyle: {
                             normal: {
-                                show: true,
-                                fontSize: 15,
-                               color:'#406098',
-                                fontFamily:'Microsoft Yahei',
-                                avoidLabelOverlap: true,
+                                color: 'rgba(0,0,0,0)'
                             }
                         },
-                        data: this.data.data1
-                    },
-                ]
-            };  
-            
-            myChart.setOption(option);
-                     
-          },
-            ChartInit1() {
-        var myChart1 = this.$echarts.init(document.getElementById("tu6"));
-          var option1 = {
-                tooltip: {
-                    trigger: 'item',
-                    formatter: "{a} <br/>{b}: {c} ({d}%)"
-                },
-
-                series: [  
-
-                                  {
-                        name:' 风效指数',
-                        type:'pie',
-                        radius: ['20%', '70%'],
-                        //酷冷到-》热
-                        // color:['#FF4040','#CAFF70','#FFF68F','#FF6347','#CD5555'],
-                        //   color:['#00BFFF','#bbe2e8','#6cacde','#76EEC6','#CAFF70','#f6da22','#FF7256','#EE4000','red'],
-                        //   color:['black','#bbe2e8','#6cacde','#79CDCD','#B4EEB4','#dec768','#d9c092','red'],
-                      color:['#204098','#3860a0','#6088c8','#90b0c0','#90a0a0','#d0b878','#c1896e','#a2807e','#945657'],
-                        label: {
+                        tooltip: {
+                            show: false
+                        },
+                    }, { // 阴影的最后25%，透明
+                        value: 2.5,
+                        itemStyle: {
                             normal: {
-                                show: true,
-                                // position:'inside',
-                                align:'right',
-                                fontSize: 15,
-                                fontFamily:'Microsoft YaHei',
-                                color:'#406098',
-                                avoidLabelOverlap: true,
-                            },
-                                        },
-                        data: this.data.data2
-                    },
-                ]};
-              myChart1.setOption(option1); 
-            },
-        ChartInit2() {      
-        var myChart2 = this.$echarts.init(document.getElementById("tu7"));
-      
-        var option2 = {
-                tooltip: {
-                    trigger: 'item',
-                    formatter: "{a} <br/>{b}: {c} ({d}%)"
-                },
-
-                series: [  
-                                        {
-                        name:' 舒适度',
-                        type:'pie',
-                        radius: ['20%', '70%'],
-                        //舒服 -》不舒服
-                        // color:['#76EEC6','#CAFF70','#f6da22','#FF7256','#EE4000'],
-                        //   color:['black','#bbe2e8','#6cacde','#79CDCD','#B4EEB4','red'],
-                    color:['#90a0a0','#d0b878','#90b0c0','#6088c8','#3860a0','#204098'],
-                  
-                        label: {
-                            normal: {
-                                show: true,
-                                // position: 'inside',
-                                fontSize: 15,
-                                fontFamily:'Microsoft YaHei',
-                                color:'#406098',
-                                avoidLabelOverlap: true,
+                                color: '#F1F1F1',
+                                borderWidth: 0
                             }
                         },
-                        data:this.data.data3
-                    },
-
-                ]};
-                myChart2.setOption(option2);
-        },
-        
+                        tooltip: {
+                            show: false
+                        },
+                    }]
+                })
+             }
+             var option={
+                  tooltip: {
+                    trigger: 'item',
+                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                },
+               series:series
+             }
+             myChart.setOption(option);
+        }
     },
-    mounted() {
+        mounted() {
         pubsub.subscribe("getTimeData",(msg,data)=>{
             //console.log(data);
             this.month = data;
             this.$root.$emit("updataPieChart",data);
         })
         this.ChartInit()
-         this.ChartInit1()
-          this.ChartInit2()
     },
-
 
 };
 </script>
 <style>
-#Echarts{
-    width: 100%;
-    height: 100%;
+#Echart{
+    width:100%;
+    height:50%;
 }
 #tu5{
-    position:absolute;
-    height: 30%;
+     position:absolute;
+    height: 100%;
     width: 100%;
-    top: 9%;
+    top: 5%;
 }
-#tu6{
-    position:absolute;
-    height: 30%;
-    width: 100%;
-    top: 43%;
-}
-#tu7{
-    position:absolute;
-    height: 30%;
-    width: 100%;
-    top: 72%;
-}
-#title1{
-       position:absolute;
-    left:5%;
-    top: 4%;
-}
-#title2{
-        position:absolute;
-    left:5%;
-    top: 38%;
-}
-#title3{
-        position:absolute;
- 
-    left:5%;
-    top: 70%;
-}
-
 </style>
