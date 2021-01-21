@@ -17,19 +17,18 @@ function RankingChartDataCalc(baseData,focus){
             dataset.push({
                 city:baseData[i]['市'],
                 comfort:Math.abs(Number(baseData[i]['S']).toFixed(3)),
-                greenhouse:Math.abs(Number(baseData[i]['THI']).toFixed(3)),
-                windeff: Number(baseData[i]['K']).toFixed(3),
+                // greenhouse:Math.abs(Number(baseData[i]['THI']).toFixed(3)),
+                // windeff: Number(baseData[i]['K']).toFixed(3),
             })
         }
     }
     for(var i=0;i<dataset.length;i++){
-        if(dataset[i]['comfort']<=6.95 &&(dataset[i]['greenhouse']>=55 && dataset[i]['greenhouse']<=75)
-            &&(dataset[i]['windeff']>=-800&&dataset[i]['windeff']<=-200)){
+        if(dataset[i]['comfort']<=6.95){
             data.push({
                 city:dataset[i]['city'],
-                comfort:dataset[i]['comfort'],
-                greenhouse:dataset[i]['greenhouse'],
-                windeff:dataset[i]['windeff']
+                comfort:7-dataset[i]['comfort'],
+                // greenhouse:dataset[i]['greenhouse'],
+                // windeff:dataset[i]['windeff']
             })
         }
     }
@@ -86,13 +85,13 @@ function updateRankingChart(baseData,focus){
         } 
     }
     //console.log(data)
-    if((data.length)<10){
+    if((data.length)<6){
         for(var i=0;i<data.length;i++){
             final.push(data[i])
         }
         //console.log(final)
     }else{
-        for(var i=0;i<10;i++){
+        for(var i=0;i<6;i++){
             final.push(data[i])
         }
         //console.log(final)

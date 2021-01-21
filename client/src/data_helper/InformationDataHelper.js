@@ -23,8 +23,7 @@ function InformationDataCalc(baseData){
     }
     //console.log(dataset)
     for(var i=0;i<dataset.length;i++){
-        if(dataset[i]['comfort']<=6.95 &&(dataset[i]['greenhouse']>=55 && dataset[i]['greenhouse']<=75)
-            &&(dataset[i]['windeff']>=-800&&dataset[i]['windeff']<=-200)){
+        if(dataset[i]['comfort']<=6.95){
             data.push({
                 city:dataset[i]['city'],
                 date:dataset[i]['date'],
@@ -67,8 +66,7 @@ function updateInformation(baseData,focus){
     }
     //console.log(dataset)
     for(var i=0;i<dataset.length;i++){
-        if(dataset[i]['comfort']<=6.95 &&(dataset[i]['greenhouse']>=55 && dataset[i]['greenhouse']<=75)
-            &&(dataset[i]['windeff']>=-800&&dataset[i]['windeff']<=-200)){
+        if(dataset[i]['comfort']<=6.95){
             data.push({
                 city:dataset[i]['city'],
                 date:dataset[i]['date'],

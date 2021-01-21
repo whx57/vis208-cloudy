@@ -14,9 +14,9 @@
       
     </div>
     <div class="ranking">
-      <!-- <ranking-chart
+      <ranking-chart
       v-bind:data="chartsData.rankingchartData.data"
-      v-bind:focus="chartsData.rankingchartData.focus"></ranking-chart> -->
+      v-bind:focus="chartsData.rankingchartData.focus"></ranking-chart>
     </div>
     <div class="parallel">
       <parallel-coordinates
@@ -223,12 +223,12 @@ body {
   z-index: 1;
 }
 .ranking{
-  width: 21%;
+  width: 21.9%;
   height: 51%;
   position: absolute;
   background-color: rgb(255, 255, 255,0.35);
   z-index: 1;
   top: 7.5%;
-  left: 79%;
+  left: 78%;
 }
 </style>
