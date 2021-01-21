@@ -211,7 +211,7 @@ export default {
                         show: true,
                         interval: 0,
                         textStyle: {
-                            color: '#000000',
+                            color: '#3e3e3e',
                             fontSize: 14
                         }
                     },      
