@@ -32,31 +32,35 @@ export default {
              var myChart = this.$echarts.init(document.getElementById("tu5")); 
              console.log(this.data)
              let resData=[{
-                 name:'温湿指数',
-                 value:this.data.data1[1].value+this.data.data1[2].value+this.data.data1[3].value     
-                // value:10          
+                 name:'温湿舒适占比',
+                 value:this.data.data1[3].value+this.data.data1[4].value+this.data.data1[5].value             
              },{
-                 name:'风效指数',
+                 name:'风效舒适占比',
                  value:this.data.data2[3].value,
-                 //value:12
              },{
-                 name:'舒适度',
+                 name:'综合舒适占比',
                  value:this.data.data3[0].value
-                 //value:16
              }
              ]
+             console.log(resData[0].value,resData[1].value,resData[2].value)
+             let name = resData.map((item) => item.name) // 获取名称
+             let value = resData.map((item) => item.value) // 获取数值
+             let sum=50*1.25
+             let resName=['温湿指数','风效指数','舒适度']
+             let resName2=['温湿其余占比','风效其余占比','综合其余占比']
              let color = [ // 渐变颜色
-                        ['#2592FF', '#20a6ff'],
-                        ['#F7C23A', '#ffc83c'],
-                        ['#7686A3', '#8395b4'],
+                        ['#7fa8cf', '#20a6ff'],
+                        ['#c5d6ac', '#ffc83c'],
+                        ['#f2c782', '#8395b4'],
                         ]
              let series=[]
+             let yAxis = []
              for(let i=0;i<resData.length;i++){
-                 series.push({
+                 series.push({//数据占比圆环
                      type:'pie',
                      clockWise:true,
                      hoverAnimation:false,
-                     radius:[78-22*i+'%',68-22*i+'%'],
+                     radius:[68-22*i+'%',58-22*i+'%'],
                      center:['50%','50%'],
                      itemStyle:{
                          normal:{
@@ -72,20 +76,30 @@ export default {
                      data:[{
                          name:resData[i].name,
                          value:resData[i].value,
+                          itemStyle:{
+                             normal:{
+                                 color:color[i][0]
+                             }
+                         }
                      },
                      {
-                         name:'',
-                         value:50-resData[i].value,
+                         name:resName2[i],
+                         value:sum-resData[i].value,
+                         itemStyle:{
+                             normal:{
+                                 color:"transparent"
+                             }
+                         }
                      }
                      ]
                  })
-                series.push({
+                series.push({//阴影段填充
                     name: '',
                     type: 'pie',
                     clockWise: true, //顺时加载
-                    z: 3, // 层级，默认为 2，z小的会被z大的覆盖住
+                    z: 1, // 层级，默认为 2，z小的会被z大的覆盖住
                     hoverAnimation: true, // 鼠标移入变大
-                    radius: [78 - i * 22 + '%', 68 - i * 22 + '%'], // 圆环
+                    radius: [68 - i * 22 + '%', 58 - i * 22 + '%'], // 圆环
                     center: ['50%', '50%'], // 位置
                     label: {
                         show: false
@@ -94,7 +108,9 @@ export default {
                         value: 7.5,
                         itemStyle: {
                             normal: {
-                                color: 'rgba(0,0,0,0)'
+                            color: '#DCDCDC'
+                                //color: 'rgba(0,0,0,0)'
+                                //color:color[i][1]
                             }
                         },
                         tooltip: {
@@ -104,7 +120,8 @@ export default {
                         value: 2.5,
                         itemStyle: {
                             normal: {
-                                color: '#F1F1F1',
+                                //color: 'rgb(176,201,232)',
+                                color: 'rgba(0,0,0,0)',
                                 borderWidth: 0
                             }
                         },
@@ -114,11 +131,92 @@ export default {
                     }]
                 })
              }
+             let percentLIst = [{//设置百分比
+                                    value: 0,
+                                    name: '0%'
+                                }];
+            for (let i = 1; i < 11; i++) {
+                let item = {
+                    value: 1,
+                    name: i * 10 + '%'
+                }
+                percentLIst.push(item)
+            }    
+            percentLIst.push({ // 阴影的最后25%，透明
+                value: 3
+            }) 
+            series.push({
+                name: '百分比',
+                type: 'pie',
+                clockWise: true, //顺时加载
+                z: 5, // 层级，默认为 2，z小的会被z大的覆盖住
+                hoverAnimation: true, // 鼠标移入变大
+                radius: ['81%', '81%'], // 圆环  实现百分比刻度的重点
+                center: ['50%', '50%'], // 位置
+                itemStyle: {
+                    normal: {
+                        label: {
+                            show: true,//实现百分比刻度的重点
+                            color: '#3e3e3e',
+                            padding: [0, -15],
+                            position: 'inside',//实现百分比刻度的重点
+                            align: 'right',
+                        },
+                        labelLine: {
+                            show: false,
+                        },
+                    }
+                },
+                data: percentLIst
+            })            
              var option={
                   tooltip: {
                     trigger: 'item',
-                    formatter: "{a} <br/>{b}: {c} ({d}%)"
+                    backgroundColor: 'rgba(255, 255, 255)',
+                    textStyle: {
+                        color: '#3e3e3e'
+                    },
+                    padding: [13, 12],
+		            extraCssText: 'box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);',
+                    //formatter: "{a} <br/>{b}: {c} ({d}%)"
+
+                    formatter: function(param) { //自定义弹出框的内容
+                        param.percent=(param.value/50)*100
+                        var res=param.name + ':'+'<br/>' +'   '+param.value+' '+param.percent+'%'
+                        console.log(param.percent)
+                        //上面自带的百分比是不对的，需要重新计算 再渲染
+                    return res;
+                }
                 },
+               	grid: {
+                    top: '14%',
+                    left: '48%',
+                    width: '40%',
+                    height: '30%',
+                    containlabel: false
+                },
+                xAxis: [{ // x轴隐藏
+                    show: false
+                }],
+                yAxis: [{ // y轴配置
+                    type: 'category',
+                    z:6,
+                    axisLine: {
+                        show: false
+                    },
+                    axisTick: {
+                        show: false
+                    },
+                    axisLabel: {
+                        show: true,
+                        interval: 0,
+                        textStyle: {
+                            color: '#000000',
+                            fontSize: 14
+                        }
+                    },      
+                    data: resName.reverse()
+                }],
                series:series
              }
              myChart.setOption(option);
