@@ -1,5 +1,4 @@
 import ServerDataProvider from './ServerDataProvider';
-
 import InformationDataHelper from './InformationDataHelper'
 import PieChartDataHelper from './PieChartDataHelper'
 import ParallelChartDataHelper from './ParallelChartDataHelper'

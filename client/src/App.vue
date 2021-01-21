@@ -24,9 +24,9 @@
       v-bind:focus="chartsData.parallelchartData.focus"></parallel-coordinates>
     </div>
     <div class="pie">
-      <!-- <pie-chart
+      <pie-chart
       v-bind:data="chartsData.piechartData.data"
-      v-bind:focus="chartsData.piechartData.focus"></pie-chart> -->
+      v-bind:focus="chartsData.piechartData.focus"></pie-chart>
     </div>
     <div class="timeline">
       <time-line></time-line>
