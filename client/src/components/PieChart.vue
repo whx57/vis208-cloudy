@@ -45,13 +45,14 @@ export default {
              console.log(resData[0].value,resData[1].value,resData[2].value)
              let name = resData.map((item) => item.name) // 获取名称
              let value = resData.map((item) => item.value) // 获取数值
-             let sum=50*1.25
+             let sum=50/0.75
              let resName=['温湿指数','风效指数','舒适度']
-             let resName2=['温湿其余占比','风效其余占比','综合其余占比']
+             //let resName2=['温湿其余占比','风效其余占比','综合其余占比']
              let color = [ // 渐变颜色
                         ['#7fa8cf', '#20a6ff'],
                         ['#c5d6ac', '#ffc83c'],
-                        ['#f2c782', '#8395b4'],
+                        ['#e8c867', '#8395b4'],
+                        //['#f2c782', '#8395b4'],
                         ]
              let series=[]
              let yAxis = []
@@ -83,13 +84,16 @@ export default {
                          }
                      },
                      {
-                         name:resName2[i],
+                         name:'',
                          value:sum-resData[i].value,
                          itemStyle:{
                              normal:{
                                  color:"transparent"
                              }
-                         }
+                         },
+                         tooltip: {
+                            show: false
+                        },
                      }
                      ]
                  })
@@ -108,9 +112,9 @@ export default {
                         value: 7.5,
                         itemStyle: {
                             normal: {
-                            color: '#DCDCDC'
+                               color: '#DCDCDC'
                                 //color: 'rgba(0,0,0,0)'
-                                //color:color[i][1]
+                               // color:color[i][0]
                             }
                         },
                         tooltip: {
@@ -145,7 +149,7 @@ export default {
             percentLIst.push({ // 阴影的最后25%，透明
                 value: 3
             }) 
-            series.push({
+            series.push({//百分比段
                 name: '百分比',
                 type: 'pie',
                 clockWise: true, //顺时加载
