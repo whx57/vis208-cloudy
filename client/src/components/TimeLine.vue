@@ -11,7 +11,6 @@ export default {
     name:"TimeLine",
     data() {
         return{
-
         } 
     },
     mounted(){
