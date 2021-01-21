@@ -1,6 +1,6 @@
 <template>
   <div class="baise">
-	  <div style="font-size:23px" id="name">{{city}}市{{month}}月气象条件</div>
+	  <div style="font-size:30px" id="name">{{city}}市{{month}}月气象条件</div>
     <div id="parallel"></div>
   </div>
 </template>

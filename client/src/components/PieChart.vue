@@ -1,6 +1,6 @@
 <template>
   <div class="Echarts">
-    <div id="title" style="font-size:23px">{{month}}月城市情况总览</div>
+    <div id="title" style="font-size:30px">{{month}}月城市情况总览</div>
     <div id="tu5"></div>
   </div>
 </template>
