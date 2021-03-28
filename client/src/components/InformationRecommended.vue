@@ -263,7 +263,7 @@ export default {
 #name{
     left:1%;
     text-align: left;
-    font-size: 30px;
+    font-size: 25px;
     position: absolute;
     top: 2%;
 }

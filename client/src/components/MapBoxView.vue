@@ -79,8 +79,8 @@ export default {
                     'icon-image':'before',
                     "text-field": "{name}",
                     'text-offset': [0,2],
-                    "text-anchor": "top"
-                    // 'icon-size':0.5
+                    "text-anchor": "top",
+                    'icon-size':0.5
                 }
                 // paint:{
                 //     "circle-color":"#e1eed3",
@@ -104,8 +104,8 @@ export default {
                     'icon-image':'after',
                     "text-field": "{name}",
                     'text-offset': [0,2],
-                    "text-anchor": "top"
-                    // 'icon-size':0.5
+                    "text-anchor": "top",
+                    'icon-size':0.5
                 },
                 filter:["==","name",""]
             });
@@ -123,7 +123,7 @@ export default {
                 container: "map", // container id
                 style: "mapbox://styles/kunkunyy/ckgm6eho60oe719sd26f2vrmv", // stylesheet location
                 center: [104.946465,34.347269], // starting position [lng, lat]
-                zoom: 4.5 // starting zoom
+                zoom: 4 // starting zoom
             });
         },
         mapLoadGeojson(that) {

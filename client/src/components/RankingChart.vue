@@ -1,7 +1,7 @@
 <template>
   <div class="basic">
-    <div id="title" style="font-size:30px">
-        {{month}}月全国城市舒适度星级排名（前6名）
+    <div id="title" style="font-size:25px">
+        {{month}}月全国城市舒适度星级排名
     </div>
    <div id="tu1"></div>
   </div>
@@ -62,13 +62,13 @@ export default {
                     axisLabel: {
                         margin: 10,
                         color: '#999',
-                        fontSize: 23
+                        fontSize: 18
                     }
                 },
                 grid: {
                     top: 'center',
-                    height: 580,
-                    left: 90,
+                    height: 350,
+                    left: 60,
                 },
                 series: [{
                     // current data
@@ -77,7 +77,7 @@ export default {
                     symbolRepeat: 'fixed',
                     symbolMargin: '10%',
                     symbolClip: true,
-                    symbolSize: 52,
+                    symbolSize: 40,
                     color:["#EEEE00"],
                     symbolBoundingData: maxData,
                     data: this.data_1,
@@ -94,7 +94,7 @@ export default {
                     symbolRepeat: 'fixed',
                     symbolMargin: '10%',
                     symbol: spirit,
-                    symbolSize: 52,
+                    symbolSize: 40,
                     symbolBoundingData: maxData,
                     data: this.data_1,
                     z: 5

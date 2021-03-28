@@ -169,10 +169,8 @@ body {
   height: 5%;
   top:1%;
   left: 10%;
-  background-color:rgb(255, 255, 255,0.35);
   position: absolute;
   float: top;
-  opacity: 0.5;
   z-index: 1;
 }
 

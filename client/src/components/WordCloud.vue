@@ -40,15 +40,19 @@ export default {
                 series: [{
                     // name: '热点分析',//数据提示窗标题
                     type: 'wordCloud',
-                    sizeRange: [6, 66],//画布范围，如果设置太大会出现少词（溢出屏幕）
+                    sizeRange: [6, 50],//画布范围，如果设置太大会出现少词（溢出屏幕）
                     rotationRange: [-45, 90],//数据翻转范围
                     //shape: 'circle',
                     textPadding: 0,
+                    left: 'center',
+                    top: 'center',
+                    width:'90%',
+                    height:'100%',
                     autoSize: {
-                        enable: false,
+                        enable: true,
                         minSize: 6
                     },
-                    drawOutOfBound: true,//词云显示完整，超出画布的也显示
+                    drawOutOfBound: false,//词云显示完整，超出画布的也显示
                     textStyle: {
                         normal: {
                             color: function() {
@@ -82,12 +86,12 @@ export default {
 
 <style>
 .tital{
-    font-size: 30px;
+    font-size: 25px;
 }
 #word_cloud{
     position: absolute;
-    top:8%;
-    height: 90%;
+    top: 15%;
+    height: 80%;
     width: 100%;
 }
 </style>
