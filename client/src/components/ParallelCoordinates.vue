@@ -76,9 +76,7 @@ export default {
 					lineStyle: {
 						width: 4,
 						color:'#59c4e6'
-
 					},
-
 					data:this.dataset
 				}
 			};
@@ -108,7 +106,6 @@ export default {
 
 <style>
 .baise{
-	
 	width: 100%;
 	height:100%;
 	position: absolute;
@@ -123,7 +120,6 @@ export default {
 #name{
 	position: absolute;
 	left: 1%;
-
 }
 
 </style>

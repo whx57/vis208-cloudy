@@ -73,26 +73,19 @@ export default {
             // Add a symbol layer
             this.map.addLayer({
                 id: "points",
-                type: "circle",
-                source: "points",
-                paint:{
-                    "circle-color":"#e1eed3",
-                    "circle-radius": 7,
-                },
-            });
-            this.map.addLayer({
-                id: "region-label",
                 type: "symbol",
                 source: "points",
-                layout: {
+                layout:{
+                    'icon-image':'before',
                     "text-field": "{name}",
-                    "text-size": 15,
-                    'text-offset': [-1.5,0]
-                },
-                paint: {
-                    "text-color": "black",
-                },
-                maxzoom: 20,
+                    'text-offset': [0,2],
+                    "text-anchor": "top"
+                    // 'icon-size':0.5
+                }
+                // paint:{
+                //     "circle-color":"#e1eed3",
+                //     "circle-radius": 7,
+                // },
             });
         },
         mapChangePointColor(features){
@@ -105,11 +98,14 @@ export default {
             });
             this.map.addLayer({
                 id: "hover",
-                type: "circle",
+                type: "symbol",
                 source: "change",
-                paint:{
-                    "circle-color":"#00BFFF",
-                    "circle-radius": 10,
+                layout:{
+                    'icon-image':'after',
+                    "text-field": "{name}",
+                    'text-offset': [0,2],
+                    "text-anchor": "top"
+                    // 'icon-size':0.5
                 },
                 filter:["==","name",""]
             });
@@ -126,8 +122,8 @@ export default {
             this.map = new mapboxgl.Map({
                 container: "map", // container id
                 style: "mapbox://styles/kunkunyy/ckgm6eho60oe719sd26f2vrmv", // stylesheet location
-                center: [101.778916, 36.623178], // starting position [lng, lat]
-                zoom: 3.8 // starting zoom
+                center: [104.946465,34.347269], // starting position [lng, lat]
+                zoom: 4.5 // starting zoom
             });
         },
         mapLoadGeojson(that) {

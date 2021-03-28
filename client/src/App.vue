@@ -10,8 +10,10 @@
         v-bind:data="chartsData.informationData.data"
         v-bind:focus="chartsData.informationData.focus"></information-recommended>
     </div>
-    <div class="wordcloudy">
-      
+    <div class="wordcloud">
+      <word-cloud
+        v-bind:data="chartsData.wordcloudData.data"
+        v-bind:focus="chartsData.wordcloudData.focus"></word-cloud>
     </div>
     <div class="ranking">
       <ranking-chart
@@ -45,6 +47,7 @@ import ParallelCoordinates from "./components/ParallelCoordinates";
 import InformationRecommended from "./components/InformationRecommended";
 import PCooordinates from "./components/ParallelCoordinates";
 import MapBoxView from "./components/MapBoxView"
+import WordCloud from "./components/WordCloud"
 
 import pubsub from "pubsub-js"
 export default {
@@ -60,6 +63,7 @@ export default {
     ParallelCoordinates,
     PCooordinates,
     MapBoxView,
+    WordCloud,
   },
   data () {
     return {
@@ -68,6 +72,7 @@ export default {
       chartsData: {
         baseData:{},
         baseDataD:{},
+        baseDataC:{},
         informationData:{
           focus: "北京市",
           data:{},
@@ -83,6 +88,9 @@ export default {
           data:{},
           focus:""
         },
+        wordcloudData:{
+          data:{},
+        }
       }
     }
   },
@@ -101,6 +109,9 @@ export default {
       }),
       this.$root.$on("updataPieChart",focus=>{
         InteractorRcvr.updataPieChart(this.chartsData,focus);
+      }),
+      this.$root.$on("updataWordCloud",focus=>{
+        InteractorRcvr.updataWordCloud(this.chartsData,focus);
       }),
       
       this.$root.$on("updataParallelChart",focus=>{
@@ -128,7 +139,7 @@ export default {
   },
   methods: {
     touch(){
-      console.log(this.chartsData.informationData.data);
+      console.log(this.chartsData.wordcloudData.data);
     }
   }
 }
@@ -162,6 +173,7 @@ body {
   position: absolute;
   float: top;
   opacity: 0.5;
+  z-index: 1;
 }
 
 .information_recommended{
@@ -174,7 +186,7 @@ body {
   float: left;
   z-index: 1;
 }
-.wordcloudy{
+.wordcloud{
   width: 30%;
   height: 40%;
   position: absolute;
@@ -184,7 +196,7 @@ body {
   left: 0.5%;
 }
 .parallel{
-  width: 39%;
+  width: 41.3%;
   height: 40%;
   position: absolute;
   background-color: rgb(255, 255, 255,0.35);
@@ -193,13 +205,13 @@ body {
   left: 31%;
 }
 .pie{
-  width: 29.5%;
+  width: 27%;
   height: 40%;
   position: absolute;
   background-color: rgb(255, 255, 255,0.35);
   z-index: 1;
   top: 59%;
-  left: 70.5%;
+  left: 72.9%;
 }
 .timeline{
   width: 55%;

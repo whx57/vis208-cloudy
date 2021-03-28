@@ -125,6 +125,6 @@ export default {
     left:5%;
     position: absolute;
     height: 95%;
-    width: 100%;
+    width: 95%;
 }
 </style>

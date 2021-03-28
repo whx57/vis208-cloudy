@@ -3,6 +3,7 @@ import InformationDataHelper from './InformationDataHelper'
 import PieChartDataHelper from './PieChartDataHelper'
 import ParallelChartDataHelper from './ParallelChartDataHelper'
 import RankingChartDataHelper from './RankingChartDataHelper'
+import WordCloudDataHelper from './WordCloudDataHelper'
 
 export default class DataProxy {
     static async initChartsData (chartsData){
@@ -41,6 +42,19 @@ export default class DataProxy {
                 console.log('......................')
             }
         )
+        ServerDataProvider.getWord_Cloud().then(
+            (response)=>{
+                chartsData.baseDataC = response.data;
+
+                chartsData.wordcloudData.data = this.initWordCloudData(
+                    chartsData['baseDataC']
+                )
+                //console.log(chartsData)
+                return chartsData
+            },(error)=>{
+                console.log('......................')
+            }
+        )
     }
     //初始化数据
     static initInformationData(baseData,focus){
@@ -70,5 +84,12 @@ export default class DataProxy {
     }
     static updateRankingChartFocus(baseData,focus){
         return RankingChartDataHelper.updateRankingChartFocus(baseData,focus);
+    }
+
+    static initWordCloudData(baseData,focus){
+        return WordCloudDataHelper.initWordCloudData(baseData,focus);
+    }
+    static updateWordCloudFocus(baseData,focus){
+        return WordCloudDataHelper.updateWordCloudFocus(baseData,focus);
     }
 }

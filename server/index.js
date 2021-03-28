@@ -100,6 +100,24 @@ app.get('/city_day', (req, res) => {
   });
 });
 
+app.get('/word_cloud', (req, res) => {
+  res.setHeader('Access-Control-Allow-Origin', '*');
+  res.setHeader('Access-Control-Allow-Methods', 'GET, POST, OPTIONS, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Headers', 'x-Requested-With,content-type');
+  res.setHeader('Access-Control-Allow-Credentials', true);
+
+  const fs = require('fs');
+
+  fs.readFile('word_cloud_data.json', 'utf8', function read(err, data) {
+    if (err) {
+      throw err;
+    }
+
+    let ret = JSON.parse(data);
+    res.send(ret);
+  });
+});
+
 const server = app.listen(3001, '127.0.0.1', function () {
   const host = server.address().address
   const port = server.address().port

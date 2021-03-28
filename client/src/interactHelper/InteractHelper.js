@@ -17,4 +17,8 @@ export default class interactorRcvr{
         chartsData.rankingchartData.focus = focus;
         chartsData.rankingchartData.data = DataProxy.updateRankingChartFocus(chartsData.baseData,focus )
     }
+    static updataWordCloud(chartsData,focus) {
+        chartsData.wordcloudData.focus = focus;
+        chartsData.wordcloudData.data = DataProxy.updateWordCloudFocus(chartsData.baseDataC,focus )
+    }
 }
